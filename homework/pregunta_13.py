@@ -1,3 +1,4 @@
+import pandas as pd
 """
 Escriba el codigo que ejecute la accion solicitada en cada pregunta. Los
 datos requeridos se encuentran en los archivos `tbl0.tsv`, `tbl1.tsv` y 
@@ -20,3 +21,8 @@ def pregunta_13():
     E    275
     Name: c5b, dtype: int64
     """
+    df = pd.read_csv('files/input/tbl0.tsv', sep='\t')
+    df2 = pd.read_csv('files/input/tbl2.tsv', sep='\t')
+    merged_df = pd.merge(df, df2, on='c0')
+    suma_por_c1 = merged_df.groupby('c1')['c5b'].sum()
+    return suma_por_c1
